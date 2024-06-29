@@ -33,7 +33,7 @@ async function run(){
                         const result = await chat.sendMessageStream(msg);
                         let text = "";
                         for await (const chunk of result.stream){
-                            const chunkText = await chunk.test();
+                            const chunkText = await chunk.text();
                             console.log("AI: ", chunkText);
                             text+= chunkText;
                         }
