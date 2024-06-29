@@ -1,8 +1,6 @@
-
-
 const { spawn } = require('child_process');
 
-const childPython = spawn('python', ['test.py']);
+const childPython = spawn('python', ['discord_navigator.py']);
 childPython.stdout.on('data',(data) => {
     console.log(`stdout: ${data}`);
 });
