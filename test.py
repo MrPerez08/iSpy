@@ -24,3 +24,5 @@ time.sleep(.5)
 pag.moveTo(monitorWidth * 9/10,monitorHeight/10)
 time.sleep(.5)
 pag.click(monitorWidth * 9/10,monitorHeight/10)
+
+
