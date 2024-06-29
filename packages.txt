@@ -1,0 +1,8 @@
+To all of the future devs working on the backend of iSpy,
+make sure to install the following packages in the terminal of your IDE or cmd
+
+
+
+npm install node
+npm install @google/generative-ai dotenv
+pip3 install pyautogui
