@@ -15,7 +15,7 @@ function fileToGenerativePart(path, mimeType){
 
 async function run() {
     const model = genAI.getGenerativeModel({model:"gemini-pro-vision"});
-    const prompt = "What is the color of the image?";
+    const prompt = "Please tell me the entity that does NOT repeat.";
     const imageParts = [fileToGenerativePart("image.png","image/png")];
     const result = await model.generateContent([prompt, ...imageParts]);
     const response = await result.response;
