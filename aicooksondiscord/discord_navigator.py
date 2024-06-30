@@ -13,6 +13,7 @@ wb.register('chrome', None, wb.BackgroundBrowser(chrome_path))
 wb.get('chrome').open_new_tab("https://discord.com/channels/@me")
 time.sleep(2)
 
+#THE FOLLOWING IS IF ACC HASNT JOINED SERVER YET
 pag.click(20,170) #Instantly Moves cursor to add a server
 #time.sleep(.5)
 #pag.click(monitorWidth/2,monitorHeight*3/4)
@@ -20,9 +21,13 @@ pag.click(20,170) #Instantly Moves cursor to add a server
 #pag.typewrite("https://discord.gg/gDqMfCPxCs")
 #pag.click(monitorWidth*6/10,monitorHeight*7/10)
 
+#IF IT AINT BROKE DONT FIX IT
 time.sleep(.5)
 pag.moveTo(monitorWidth * 9/10,monitorHeight/10)
 time.sleep(.5)
-pag.click(monitorWidth * 9/10,monitorHeight/10)
+pag.click(monitorWidth /2,monitorHeight/10)
+pag.leftClick(monitorWidth * 9/10,monitorHeight/10)
+
+
 
 
