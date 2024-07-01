@@ -12,3 +12,8 @@ childPython.stderr.on('data',(data) => {
 childPython.stdout.on('close',(code) => {
     console.log(`child process exited with code: ${code}`);
 });
+
+
+
+
+
