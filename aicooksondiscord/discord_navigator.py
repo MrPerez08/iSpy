@@ -28,7 +28,7 @@ pag.click(20,170) #Instantly Moves cursor to add a server
 #pag.click(monitorWidth*6/10,monitorHeight*7/10)
 
 #IF IT AINT BROKE DONT FIX IT
-'''
+ 
 time.sleep(.5)
 pag.moveTo(monitorWidth * 9/10,monitorHeight/10)
 time.sleep(.5)
@@ -39,12 +39,13 @@ pag.typewrite(pedo)
 pag.press("enter")
 pag.click(monitorWidth * 9/10,monitorHeight/6)
 pag.leftClick(monitorWidth * 9/10,monitorHeight/4)
-'''
+
+
 pag.moveTo(monitorWidth/5.5,monitorHeight/2)
 pag.scroll(15)
-while(True):
-    time.sleep(.5)
-    pag.scroll(32)
+#while(True):
+    #time.sleep(.5)
+    #pag.scroll(32)
 
 
 
