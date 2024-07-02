@@ -1,9 +1,0 @@
-{
-    "name": "com.your_extension.native",
-    "description": "Native messaging host for Copy Search Query to VSCode extension",
-    "path": "/path/to/your/native/script",
-    "type": "stdio",
-    "allowed_origins": [
-        "chrome-extension://<your-extension-id>/"
-    ]
-}
