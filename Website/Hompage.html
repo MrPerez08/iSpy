@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Box Example</title>
+</head>
+<body>
+    <input type="text" id="userInput" placeholder="Type here" onkeydown="handleKeyPress(event)">
+    <script>
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            printToConsole();
+        }
+    }
+
+    function printToConsole() {
+        // Get the value from the input box
+        var userInput = document.getElementById('userInput').value;
+                    
+        // Print the value to the console
+        console.log('User input:', userInput);
+    }
+    </script>
+</body>
+</html>
