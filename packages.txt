@@ -4,6 +4,7 @@ make sure to install the following packages in the terminal of your IDE or cmd
 
 
 npm install node
-npm install @google/generative-ai dotenv
+npm install @google/generative-ai dotenv   <- might be useless (replaced JS gemini with py gemini)
+pip install google-generativeai
 pip3 install pyautogui 
 pip install screeninfo
