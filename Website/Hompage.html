@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>iSpy</title>
-</head>
-<body>
-    <input type="text" id="userInput" placeholder="Type here" onkeydown="handleKeyPress(event)">
-    <script>
+  </head>
+  <body>
+    <form action="connect.php" method="post">
+      <input
+        type="text"
+        id="userInput"
+        name="userInput"
+        placeholder="Type here"
+      />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+  <script>
     function handleKeyPress(event) {
-        if (event.key === 'Enter') {
-            printToConsole();
-        }
+      if (event.key === "Enter") {
+        printToConsole();
+      }
     }
     function printToConsole() {
-        var userInput = document.getElementById('userInput').value; // Get the value from the input box
-        console.log('User input:', userInput); // Print the value to the console 
-        // NEAL WHEN U PLUG INTO MySQL, YOU WANT TO PASS THE 'userInput' VARIABLE MHMHMHMHMHM        
+      var userInput = document.getElementById("userInput").value; // Get the value from the input box
+      console.log("User input:", userInput); // Print the value to the console
+      // NEAL WHEN U PLUG INTO MySQL, YOU WANT TO PASS THE 'userInput' VARIABLE MHMHMHMHMHM
     }
-    </script>
-</body>
+  </script>
 </html>
