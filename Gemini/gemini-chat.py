@@ -1,40 +1,63 @@
-"""
-Install the Google AI Python SDK
-
-$ pip install google-generativeai
-
-See the getting started guide for more information:
-https://ai.google.dev/gemini-api/docs/get-started/python
-"""
+from dotenv import load_dotenv
+load_dotenv()
 
 import os
-
 import google.generativeai as genai
 
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+# Configure the API key for Google Generative AI
+genai.configure(api_key=os.getenv("API_KEY"))
 
-# Create the model
-# See https://ai.google.dev/api/python/google/generativeai/GenerativeModel
-generation_config = {
-  "temperature": 1,
-  "top_p": 0.95,
-  "top_k": 64,
-  "max_output_tokens": 8192,
-  "response_mime_type": "text/plain",
-}
+# Load the gemini-pro model
+model = genai.GenerativeModel("gemini-pro")
+chat = model.start_chat(history=[])
 
-model = genai.GenerativeModel(
-  model_name="gemini-1.5-flash",
-  generation_config=generation_config,
-  # safety_settings = Adjust safety settings
-  # See https://ai.google.dev/gemini-api/docs/safety-settings
-)
+def get_response(question):
+    # Send the message to the AI and retrieve the response
+    response = chat.send_message(question, stream=True)
+    return response
 
-chat_session = model.start_chat(
-  history=[
-  ]
-)
+def main():
+    print("Start chatting with the AI. Type 'exit' to end the conversation.")
+    
+    while True:
+        user_input = input("You: ")
+        
+        if user_input.lower() == "exit":
+            print("Exiting the chat. Goodbye!")
+            break
 
-response = chat_session.send_message("INSERT_INPUT_HERE")
+        response = get_response(user_input)
+        for chunk in response:
+            print(f"AI: {chunk.text}")
 
-print(response.text)
+if __name__ == "__main__":
+    main()
+
+
+
+#simple one word response
+'''
+from dotenv import load_dotenv
+load_dotenv()
+
+import os
+import google.generativeai as genai
+
+genai.configure(api_key=os.getenv("API_KEY"))
+
+#load gemini-pro model
+model=genai.GenerativeModel("gemini-pro")
+chat = model.start_chat(history=[])
+
+def get_response(question):
+    response = chat.send_message(question,stream=True)
+    return response
+
+
+input = str(input())
+
+if input:
+    response = get_response(input)
+    for chunk in response:
+        print(chunk.text)
+'''

@@ -13,6 +13,7 @@ import time
 server_invite= "https://discord.gg/EdqRe89B"
 email = "itybitygremlin@gmail.com"  # Replace with your email
 password = "MrYoshiJoshiSells"  # Replace with your password
+pedo = ""
 
 # Set up options for Chrome
 options = Options()
@@ -41,11 +42,23 @@ try:
     WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., "Join a Server")]'))).click()
     WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'inputInner_e8a9c7'))).send_keys(server_invite)
     WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., "Join Server")]'))).click()
-    WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.ID, 'checkbox'))).click()
+    #Enter 2captcha hcaptcha bypass
+    #WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.ID, 'checkbox'))).click()
 
     print("Successfully navigated to the server!")
 except Exception as e:
     print(f"An error occurred while joining the server: {e}")
+
+#Code a way to message within the server and say something like the following:
+#"hi "
+
+
+try:
+    WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., pedo)]'))).click()
+    print("Successfully joined chat")
+except Exception as e:
+    print(f"An error occured when contacting accused: {e}")
+
 
 time.sleep(10)
 driver.quit()
