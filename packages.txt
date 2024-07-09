@@ -8,3 +8,4 @@ npm install @google/generative-ai dotenv   <- might be useless (replaced JS gemi
 pip install google-generativeai
 pip3 install pyautogui 
 pip install screeninfo
+pip install selenium
