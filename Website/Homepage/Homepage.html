@@ -13,7 +13,6 @@
       <div class="container">
         <img src="logo.png" alt="Website Logo" class="logo" />
         <nav class="navbar">
-          <a href="#Home">Home</a>
           <a href="#Report a Predator">Report a Predator</a>
           <a href="#about">About Us</a>
           <a href="#contact">Contact Us</a>
@@ -21,22 +20,37 @@
       </div>
     </header>
 
-    <!-- SECTION 1: THE MAIN SECTION -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1><b> iSpy </b></h1>
-        <p>A website created to catch online predators on Discord</p>
-      </div>
-    </section>
-
     <!-- SECTION 2: REPORT AN ONLINE PEDOPHILE -->
 
     <section class="hero">
       <div class="hero-content">
         <h1><b> REPORT A PREDATOR </b></h1>
-        <a href="file:///C:/xampp/htdocs/iSpy/Website/Report-Page/Report.html">
-          <button id="Click here" class="button">Report</button></a
-        >
+        
+        <div class="centered-section">
+            <p>Enter Username</p>
+            <form action="connect.php" method="post">
+              <input
+                type="text"
+                id="userInput"
+                name="userInput"
+                placeholder="Search..."
+              />
+              <input type="submit" value="Submit" />
+            </form>
+            <style>
+              .centered-section {
+                text-align: center;
+              }
+              .centered-section input[type="text"] {
+                padding: 10px;
+                font-size: 16px;
+                width: 80%;
+                max-width: 300px;
+                margin-top: 10px;
+              }
+            </style>
+          </div>
+
       </div>
     </section>
 
