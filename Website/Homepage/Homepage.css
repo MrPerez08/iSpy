@@ -25,18 +25,15 @@ header.banner {
 .logo {
   height: 50px;
   width: 100px;
-}
-
-.logo {
   opacity: 0;
-  transform: translateY(50px);
-  animation: fadeInUp 0.5s ease-out forwards;
+  transform: translateY(-50px);
+  animation: slideDown 0.5s ease-out forwards;
 }
 
-@keyframes fadeInUp {
+@keyframes slideDown {
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -44,6 +41,10 @@ header.banner {
   display: flex;
   gap: 30px;
   align-items: center;
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: slideDown 0.5s ease-out forwards;
+  animation-delay: 0.3s;
 }
 
 .navbar a {
@@ -75,19 +76,6 @@ header.banner {
   width: 100%;
 }
 
-.navbar {
-  opacity: 0;
-  transform: translateY(50px);
-  animation: fadeInUp 0.5s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-
 .hero {
   background-image: url("background.jpg");
   background-size: cover;
@@ -98,9 +86,10 @@ header.banner {
   align-items: center;
   justify-content: center;
   height: 90vh;
-  animation: fadeInUp 1.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: slideDown 0.5s ease-out forwards;
 }
-
 
 .hero-content {
   background: rgba(0, 0, 0, 0.7);
@@ -110,19 +99,6 @@ header.banner {
   max-width: 80%;
   margin: 0 20px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.hero {
-  opacity: 0;
-  transform: translateY(50px);
-  animation: fadeInUp 0.5s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
 }
 
 .hero h1 {
@@ -208,6 +184,22 @@ form {
 .next-button:hover {
   background-color: red;
   box-shadow: 0 0 20px 5px rgba(236, 21, 60, 0.5);
+}
+
+@keyframes buttonZoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.next-button:active {
+  animation: buttonZoom 0.2s ease-in-out;
 }
 
 .menu-toggle {
@@ -309,6 +301,18 @@ form {
     transform: translateY(0%);
   }
 
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
   .navbar a {
     padding: 15px 0;
     width: 100%;
@@ -337,5 +341,36 @@ form {
 
   .navbar a:hover {
     background-color: #333333;
+  }
+}
+
+@keyframes slideDownLetter {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1 span {
+  display: inline-block;
+  opacity: 0;
+  animation: slideDownLetter 0.5s ease-out forwards;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 32px; /* Adjust font size for smaller screens */
   }
 }
