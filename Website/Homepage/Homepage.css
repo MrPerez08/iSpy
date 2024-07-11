@@ -22,8 +22,8 @@ header.banner {
 
 @keyframes fadeInUp {
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -90,6 +90,7 @@ header.banner {
 }
 
 .hero {
+  position: relative;
   background-image: url("background.jpg");
   background-size: cover;
   background-position: center;
@@ -100,12 +101,42 @@ header.banner {
   justify-content: center;
   height: 90vh;
   opacity: 0;
+  overflow: hidden;
   transform: translateY(-50px);
   animation: slideDown 0.5s ease-out forwards;
 }
 
+.hero:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  z-index: -1;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.9),
+    transparent,
+    rgba(255, 255, 255, 0.9)
+  );
+  animation: gradientAnimation 15s infinite linear;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    transform: translate(-30%, -30%);
+  }
+  50% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(-30%, -30%);
+  }
+}
+
 .hero-content {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   padding: 40px 30px;
   border-radius: 15px;
   display: inline-block;
