@@ -14,6 +14,19 @@ header.banner {
   position: relative;
 }
 
+.header.banner {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
 .container {
   width: 80%;
   margin: 0 auto;
