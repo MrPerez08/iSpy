@@ -40,6 +40,11 @@ header.banner {
   font-family: revert;
   font-size: 20px;
   padding: 10px 15px;
+  transition: transform 0.3s;
+}
+
+.navbar a:hover {
+  transform: scale(1.1);
 }
 
 .navbar a::after {
@@ -113,45 +118,55 @@ form {
 }
 
 #userInput:focus {
+  background-color: #000000;
+  color: #ffffff;
   border-color: #e74c3c;
   box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
   outline: none;
 }
 
+/* Style for the button */
 .next-button {
-  background-color: green;
+  background-color: red;
   color: white;
   padding: 10px 40px;
   border-radius: 50px;
   text-decoration: none;
-  margin: 5px;
   transition: background-color 0.3s ease, box-shadow 0.3s ease-out;
   font-size: 18px;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   position: relative; /* Ensure relative positioning for absolute positioning */
 }
 
+/* Centering the contents of the span and adding space between the text and icon */
 .next-button span {
-  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.next-button:hover {
-  background-color: green;
-  box-shadow: 0 0 20px 5px rgba(76, 231, 60, 0.5);
+.next-button span a {
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+  margin-right: 10px; /* Adjust the space between the text and the icon */
 }
 
+/* Style for the icon */
 .icon {
-  width: 24px; /* Adjust size of SVG */
-  height: 24px; /* Adjust size of SVG */
-  margin-left: 10px; /* Adjust spacing between text and icon */
-  position: absolute;
-  right: 10px; /* Adjust to align icon to the right */
-  top: 50%;
-  transform: translateY(-55%);
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+/* Hover effect for the button */
+.next-button:hover {
+  background-color: red;
+  box-shadow: 0 0 20px 5px rgba(236, 21, 60, 0.5);
 }
 
 .menu-toggle {
