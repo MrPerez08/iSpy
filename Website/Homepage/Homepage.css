@@ -100,10 +100,7 @@ header.banner {
   align-items: center;
   justify-content: center;
   height: 90vh;
-  opacity: 0;
   overflow: hidden;
-  transform: translateY(-50px);
-  animation: slideDown 0.5s ease-out forwards;
 }
 
 .hero:before {
@@ -139,17 +136,19 @@ header.banner {
   background: rgba(0, 0, 0, 0.5);
   padding: 40px 30px;
   border-radius: 15px;
-  display: inline-block;
   max-width: 80%;
-  margin: 0 20px;
+  margin: 0 auto;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  height: auto; /* Changed height to auto for responsive layout */
 }
 
-.hero h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
-  font-family: "Helvetica Neue", sans-serif;
-  font-weight: bold;
+.report-form {
+  display: none; /* Hide forms initially */
+}
+
+.report-form.active {
+  display: block; /* Show form when active */
 }
 
 .hero p {
@@ -164,7 +163,7 @@ form {
   align-items: center;
 }
 
-#userInput {
+.userInput {
   width: 100%;
   max-width: 300px;
   max-height: 100px;
@@ -178,7 +177,7 @@ form {
   color: #ffffff;
 }
 
-#userInput:focus {
+.userInput:focus {
   background-color: #000000;
   color: #ffffff;
   border-color: #e74c3c;
@@ -222,6 +221,7 @@ form {
   width: 24px;
   height: 24px;
   vertical-align: middle;
+  margin-left: 2px;
 }
 
 /* Hover effect for the button */
@@ -415,6 +415,102 @@ form {
 
 @media (max-width: 600px) {
   .hero h1 {
-    font-size: 32px; /* Adjust font size for smaller screens */
+    font-size: 32px;
+    white-space: normal;
+    text-align: center;
   }
+}
+
+.pedo,
+.server {
+  display: none;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center; /* Center the buttons horizontally */
+  margin-top: 60px; /* Increase the top margin for more spacing */
+}
+
+.centered-section {
+  text-align: center; /* Center align the contents */
+  margin-top: 20px; /* Add some top margin for spacing */
+}
+
+button.opt1,
+button.opt2 {
+  background-color: black;
+  color: white;
+  padding: 10px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s;
+  width: 200px;
+}
+
+button.opt1:hover,
+button.opt2:hover {
+  transform: scale(1.1);
+}
+
+.x-button-container {
+  position: absolute;
+  margin-top: -300px;
+  margin-left: -500px;
+  z-index: 1200; /* Ensure it's above other content */
+  display: none; /* Initially hidden */
+}
+
+.close-button {
+  background: #aa0000;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 10;
+  position: relative;
+  overflow: hidden; /* Ensure text overflow is hidden initially */
+  transition: width 0.3s, margin-left 0.3s;
+  z-index: 1100;
+}
+
+.close-button:hover {
+  width: 100px;
+  border-radius: 30px;
+  margin-left: 70px;
+  content: "Back";
+}
+
+.back-text {
+  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  top: 50%;
+  left: 40px; /* Adjust left position to place "Back" correctly */
+  transform: translateY(-50%);
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease;
+}
+
+.close-button:hover .back-text {
+  opacity: 1; /* Show "Back" text on hover */
+}
+
+.main {
+  white-space: normal;
 }
