@@ -35,8 +35,8 @@ header.banner {
 
 @keyframes fadeInUp {
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -51,18 +51,15 @@ header.banner {
 .logo {
   height: 50px;
   width: 100px;
-}
-
-.logo {
   opacity: 0;
-  transform: translateY(50px);
-  animation: fadeInUp 0.5s ease-out forwards;
+  transform: translateY(-50px);
+  animation: slideDown 0.5s ease-out forwards;
 }
 
-@keyframes fadeInUp {
+@keyframes slideDown {
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -70,6 +67,10 @@ header.banner {
   display: flex;
   gap: 30px;
   align-items: center;
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: slideDown 0.5s ease-out forwards;
+  animation-delay: 0.3s;
 }
 
 .navbar a {
@@ -101,20 +102,8 @@ header.banner {
   width: 100%;
 }
 
-.navbar {
-  opacity: 0;
-  transform: translateY(50px);
-  animation: fadeInUp 0.5s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-
 .hero {
+  position: relative;
   background-image: url("background.jpg");
   background-size: cover;
   background-position: center;
@@ -124,38 +113,55 @@ header.banner {
   align-items: center;
   justify-content: center;
   height: 90vh;
-  animation: fadeInUp 1.5s ease-out forwards;
+  overflow: hidden;
 }
 
-
-.hero-content {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 40px 30px;
-  border-radius: 15px;
-  display: inline-block;
-  max-width: 80%;
-  margin: 0 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.hero:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  z-index: -1;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.9),
+    transparent,
+    rgba(255, 255, 255, 0.9)
+  );
+  animation: gradientAnimation 15s infinite linear;
 }
 
-.hero {
-  opacity: 0;
-  transform: translateY(50px);
-  animation: fadeInUp 0.5s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-      opacity: 1;
-      transform: translateY(0);
+@keyframes gradientAnimation {
+  0% {
+    transform: translate(-30%, -30%);
+  }
+  50% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(-30%, -30%);
   }
 }
 
-.hero h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
-  font-family: "Helvetica Neue", sans-serif;
-  font-weight: bold;
+.hero-content {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 40px 30px;
+  border-radius: 15px;
+  max-width: 80%;
+  margin: 0 auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  height: auto; /* Changed height to auto for responsive layout */
+}
+
+.report-form {
+  display: none; /* Hide forms initially */
+}
+
+.report-form.active {
+  display: block; /* Show form when active */
 }
 
 .hero p {
@@ -170,7 +176,7 @@ form {
   align-items: center;
 }
 
-#userInput {
+.userInput {
   width: 100%;
   max-width: 300px;
   max-height: 100px;
@@ -184,7 +190,7 @@ form {
   color: #ffffff;
 }
 
-#userInput:focus {
+.userInput:focus {
   background-color: #000000;
   color: #ffffff;
   border-color: #e74c3c;
@@ -228,12 +234,29 @@ form {
   width: 24px;
   height: 24px;
   vertical-align: middle;
+  margin-left: 2px;
 }
 
 /* Hover effect for the button */
 .next-button:hover {
   background-color: red;
   box-shadow: 0 0 20px 5px rgba(236, 21, 60, 0.5);
+}
+
+@keyframes buttonZoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.next-button:active {
+  animation: buttonZoom 0.2s ease-in-out;
 }
 
 .menu-toggle {
@@ -335,6 +358,18 @@ form {
     transform: translateY(0%);
   }
 
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
   .navbar a {
     padding: 15px 0;
     width: 100%;
@@ -364,4 +399,131 @@ form {
   .navbar a:hover {
     background-color: #333333;
   }
+}
+
+@keyframes slideDownLetter {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1 span {
+  display: inline-block;
+  opacity: 0;
+  animation: slideDownLetter 0.5s ease-out forwards;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 32px;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+.pedo,
+.server {
+  display: none;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center; /* Center the buttons horizontally */
+  margin-top: 60px; /* Increase the top margin for more spacing */
+}
+
+.centered-section {
+  text-align: center; /* Center align the contents */
+  margin-top: 20px; /* Add some top margin for spacing */
+}
+
+button.opt1,
+button.opt2 {
+  background-color: black;
+  color: white;
+  padding: 10px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s;
+  width: 200px;
+}
+
+button.opt1:hover,
+button.opt2:hover {
+  transform: scale(1.1);
+}
+
+.x-button-container {
+  position: absolute;
+  margin-top: -300px;
+  margin-left: -500px;
+  z-index: 1200; /* Ensure it's above other content */
+  display: none; /* Initially hidden */
+}
+
+.close-button {
+  background: #aa0000;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 10;
+  position: relative;
+  overflow: hidden; /* Ensure text overflow is hidden initially */
+  transition: width 0.3s, margin-left 0.3s;
+  z-index: 1100;
+}
+
+.close-button:hover {
+  width: 100px;
+  border-radius: 30px;
+  margin-left: 70px;
+  content: "Back";
+}
+
+.back-text {
+  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  top: 50%;
+  left: 40px; /* Adjust left position to place "Back" correctly */
+  transform: translateY(-50%);
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease;
+}
+
+.close-button:hover .back-text {
+  opacity: 1; /* Show "Back" text on hover */
+}
+
+.main {
+  white-space: normal;
 }
