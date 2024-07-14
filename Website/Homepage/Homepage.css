@@ -6,6 +6,19 @@ body {
   background-color: #525252;
 }
 
+.body {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
 header.banner {
   background-color: #000000;
   padding: 20px 0;
