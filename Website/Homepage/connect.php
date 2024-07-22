@@ -17,12 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $link = $_POST['userInput']; // Get the user input from the form
 
     // Prepare and bind SQL statement
-    $stmt = $conn->prepare("INSERT INTO storage (server_link) VALUES (?)");
+    $stmt = $conn->prepare("INSERT INTO storage (predator_un) VALUES (?)");
     $stmt->bind_param("s", $link);
 
     // Execute statement
     if ($stmt->execute()) {
-        echo "Server Link Captured Successfully...";
+        echo "Username Captured Successfully...";
     } else {
         echo "Error: " . $stmt->error;
     }

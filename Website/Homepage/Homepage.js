@@ -117,7 +117,7 @@ xButton.addEventListener("click", function () {
   });
   document.querySelector(".button-container").style.display = "flex";
   document.querySelector(".opt1").style.display = "flex";
-  document.querySelector(".opt2").style.display = "flex";
-  document.querySelector(".main").style.display = "block";
+  //document.querySelector(".opt2").style.display = "flex";
+  document.querySelector("h1.main").style.display = "block";
   document.querySelector(".hero h1 span").style.display = "inline-block";
 });
