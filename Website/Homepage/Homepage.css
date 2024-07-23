@@ -527,3 +527,48 @@ button.opt2:hover {
 .main {
   white-space: normal;
 }
+
+@media (max-width: 600px) {
+  .close-button {
+    top: 20px;
+    left: 20px;
+  }
+
+  .close-button:hover {
+    width: 80px;
+    border-radius: 20px;
+  }
+
+  .back-text {
+    font-size: 14px;
+    left: 35px;
+  }
+}
+
+@media (max-width: 560px) {
+  .close-button {
+    top: 20px;
+    left: 150%;
+  }
+}
+
+@media (max-width: 500px) {
+  .close-button {
+    top: 20px;
+    left: 230%;
+  }
+}
+
+@media (max-width: 450px) {
+  .close-button {
+    top: 10px;
+    left: 300%;
+  }
+}
+
+@media (max-width: 390px) {
+  .close-button {
+    top: 10px;
+    left: 380%;
+  }
+}
