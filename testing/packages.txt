@@ -1,2 +1,7 @@
+for gemini:
+pip install pillow
+
+for automator:
 pip install selenium
 pip install 2captcha
+
