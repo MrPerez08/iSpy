@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute statement
     if ($stmt->execute()) {
-        echo "Username Captured Successfully...";
+        header("Location: Report.html");
     } else {
         echo "Error: " . $stmt->error;
     }

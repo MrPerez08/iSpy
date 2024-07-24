@@ -121,3 +121,5 @@ xButton.addEventListener("click", function () {
   document.querySelector("h1.main").style.display = "block";
   document.querySelector(".hero h1 span").style.display = "inline-block";
 });
+
+
