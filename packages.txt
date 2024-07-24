@@ -42,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 npm install node
 npm install @google/generative-ai dotenv   <- might be useless (replaced JS gemini with py gemini)
 pip install google-generativeai
-pip3 install pyautogui 
 pip install screeninfo
 pip install -q -U google-generativeai
 python -m pip install selenium
