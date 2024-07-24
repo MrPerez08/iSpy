@@ -1,29 +1,16 @@
+import io
+from google.cloud import videointelligence
+import PIL.Image
+import google.generativeai as genai
 import os
-import time
-from flask import Flask, request, redirect, url_for, render_template, send_from_directory
-from werkzeug.utils import secure_filename
 import google.generativeai as genai
 from google.api_core.exceptions import ResourceExhausted
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
-from google.cloud import vision
-import io
-
-# Set up the Flask app
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
-
-# Set the environment variable for Generative AI API
-os.environ["GEMINI_API_KEY"] = "YOUR_GEMINI_API_KEY"
+os.environ["GEMINI_API_KEY"] = "AIzaSyCHh3PMRXTlWtc_9YmmytbdN4KMpxqtt4M"
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
-# Set the environment variable for Google Cloud Vision API
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "path/to/your/credentials.json"
+img=PIL.Image.open('IMG_0280.jpg') #<- IMPORT IMAGE
 
-# Initialize the Vision API client
-vision_client = vision.ImageAnnotatorClient()
-
-# Create the model
 generation_config = {
     "temperature": 2,
     "top_p": 0.95,
@@ -33,7 +20,7 @@ generation_config = {
 }
 
 model = genai.GenerativeModel(
-    model_name="gemini-1.5-pro",
+    model_name='gemini-1.5-pro',
     generation_config=generation_config,
     safety_settings={
         HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
@@ -41,70 +28,40 @@ model = genai.GenerativeModel(
         HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
         HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
     },
-    system_instruction="",
+    #system_instruction="if input is dangerous, say: DANGEROUS, if not say: SAFE",
+    system_instruction="explain the image",                         
+)
+response= model.generate_content(img)
+print(response.text)
+
+#cant tweak response (sounde like chatgpt)
+
+# Your Google Cloud Video Intelligence API key
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "path/to/your/key.json"
+
+# Replace with your video file path
+video_path = "path/to/your/video.mp4"
+
+# Create a video intelligence client
+client = videointelligence.VideoIntelligenceServiceClient()
+
+# Load the video file
+with io.open(video_path, 'rb') as video_file:
+    content = video_file.read()
+
+# Create a video object
+video = videointelligence.Video(content=content)
+
+# Analyze labels
+response = client.annotate_video(
+    input_content=video,
+    features=[videointelligence.Feature.LABEL_DETECTION],
 )
 
-chat_session = model.start_chat(
-    history=[
-    ]
-)
+# Access the labels
+labels = response.annotation_results[0].segment_label_annotations
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
-
-@app.route('/')
-def upload_form():
-    return render_template('report.html')
-
-@app.route('/', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        return redirect(request.url)
-    file = request.files['file']
-    if file.filename == '':
-        return redirect(request.url)
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(file_path)
-        # Process the image file
-        description = describe_image(file_path)
-        return render_template('description.html', filename=filename, description=description)
-    return redirect(request.url)
-
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
-@app.route('/chat', methods=['GET', 'POST'])
-def chat():
-    if request.method == 'POST':
-        user_input = request.form['message']
-        if user_input.lower() == 'exit':
-            return "Chatbot session ended."
-        try:
-            response = chat_session.send_message(user_input)
-            return f"Bot: {response.text}"
-        except ResourceExhausted:
-            time.sleep(60)
-            response = chat_session.send_message(user_input)
-            return f"Bot: {response.text}"
-        except Exception as e:
-            return f"An error occurred: {e}"
-    return render_template('chat.html')
-
-def describe_image(image_path):
-    """Uses Google Cloud Vision to describe the image"""
-    with io.open(image_path, 'rb') as image_file:
-        content = image_file.read()
-
-    image = vision.Image(content=content)
-    response = vision_client.label_detection(image=image)
-    labels = response.label_annotations
-
-    description = 'Image contains: ' + ', '.join(label.description for label in labels)
-    return description
-
-if __name__ == '__main__':
-    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-    app.run(debug=True)
+# Process the labels and send to LLM (Gemini in the future)
+for label in labels:
+    # ... extract data and format for Gemini's input ...
+    # Send to Gemini:  llm_response = YOUR_LLM_API.process_video(data) 
