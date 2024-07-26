@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.action_chains import ActionChains
@@ -12,6 +12,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 from twocaptcha import TwoCaptcha
+
 
 # Replace with your server invite link
 server_invite= "https://discord.gg/awGmqSr5"
@@ -28,9 +29,13 @@ options.add_argument("--disable-infobars")  # Disable infobars
 options.add_argument("--disable-extensions")  # Disable extensions
 options.add_argument("--disable-infobars")
 
+
+
 # Initialize WebDriver using ChromeDriverManager to handle the path
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
 driver.get("https://discord.com/login")  # Open Discord login page
+
+
 # Sign In
 try:
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email"))).send_keys(email)
@@ -51,13 +56,25 @@ try:
 
     #a9b5fb07-92ff-493f-86fe-352a2803b3df
 
+    WebDriverWait(driver,10).until(EC.presence_of_element_located(
+        (By.CSS_SELECTOR, '#app-mount > div.appAsidePanelWrapper_bd26cc > div.notAppAsidePanel_bd26cc > div:nth-child(5) > div.layer_c9e2da > div > div > div > div.content_d10a58 > div.captchaContainer_d10a58 > div > iframe')
+    ))
+
     api_key = os.getenv('APIKEY_2CAPTCHA', 'afc6affd6485ce9fe825ca3613a7835a')
-
     solver = TwoCaptcha(api_key)
+    try:
+        result = solver.hcaptcha(
+            sitekey='a9b5fb07-92ff-493f-86fe-352a2803b3df',
+            url=driver.current_url,
+        )
+    except Exception as e:
+        print(f"Error occurred: {e}")
+    else:
+        print('HUURAAH', result)
 
-    time.sleep(100)
 
-
+    #//*[@id="app-mount"]/div[2]/div[1]/div[5]/div[2]/div/div/div/div[1]/div[4]/div/iframe
+    ##app-mount > div.appAsidePanelWrapper_bd26cc > div.notAppAsidePanel_bd26cc > div:nth-child(5) > div.layer_c9e2da > div > div > div > div.content_d10a58 > div.captchaContainer_d10a58 > div > iframe
 
     #Enter 2captcha hcaptcha bypass
     #WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.ID, 'checkbox'))).click()
