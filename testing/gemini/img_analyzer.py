@@ -31,7 +31,7 @@ def imgimp(image):
                 HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
             },
             #system_instruction="if input is dangerous, say: DANGEROUS, if not say: SAFE",
-            system_instruction="if the image contains something phallic, say 'Wow'",                     
+            system_instruction="if the image contains something phallic",                     
         )
         response= model.generate_content(img)
         return response.text
