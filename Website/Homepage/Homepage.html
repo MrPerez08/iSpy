@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>iSpy</title>
     <link rel="stylesheet" href="Homepage.css" />
+    <link rel="stylesheet" href="Report.css" />
     <!-- Link to CSS file -->
   </head>
   <body>
@@ -88,6 +89,10 @@
         </button>
       </div>
       <div class="hero-content">
+        <div class="advertise">
+          <img src="Featuring.png" alt="Featuring" class="featuring" />
+          <img src="Gemini.png" alt="Gemini" class="gemini" />
+        </div>
         <h1 class="main">
           <b>
             <span class="main">
@@ -131,16 +136,35 @@
               name="userInput"
               placeholder="Enter Here..."
             />
-            <button type="submit" class="next-button">
-              <span>
-                <a>Next</a>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon">
-                  <path d="M5.055 7.06C3.805 6.347 2.25 7.25 2.25 8.69v8.122c0 1.44 1.555 2.343 2.805 1.628L12 14.471v2.34c0 1.44 1.555 2.343 2.805 1.628l7.108-4.061c1.26-.72 1.26-2.536 0-3.256l-7.108-4.061C13.555 6.346 12 7.249 12 8.689v2.34L5.055 7.061Z" />
-                </svg>                
-              </span>
-            </button>
+            <p class="pedo">Enter Server Link</p>
+                <input type="url" id="server-link" name="server-link" placeholder="Type Link Here..." class="userInput" />
+
+                <p class="pedo">Give Us Context</p>
+                <textarea name="context-desc" class="userInput" id="incident-description" name="incident-description" rows="5" required placeholder="Type Description Here..."></textarea>
+
+                <p class="pedo">Visual Evidence</p>
+                <div class="file-upload-container">
+                    <input type="file" id="file-input" multiple />
+                    <label for="file-input">
+                        &nbsp;
+                        Upload Files
+                    </label>
+                    <div id="num-of-files">No Files Chosen</div>
+                        <ul id="files-list"></ul>
+                        <button id="remove-button" class="remove-button" style="display: none;">Remove All</button>
+                    </ul>
+                </div>
+
+                <button type="submit" class="next-button">
+                    <span>
+                        Report
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5" />
+                        </svg>
+                    </span>
+                </button>
           </form>
-          <form action="connect.php" method="post" class="report-form server">
+          <form action="form.php" method="post" class="report-form server">
             <p class="server">Enter Server Link</p>
             <input
               type="text"
@@ -174,6 +198,7 @@
     </section>
 
     <script src="Homepage.js"></script>
+    <script src="Files.js"></script>
     <!-- Link to JavaScript file -->
   </body>
 </html>

@@ -20,20 +20,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const serverButton = document.querySelector(".opt2");
   const questionText = document.querySelector(".hero-content h1");
   const buttons = document.querySelectorAll(".hero-content button");
+  const buttonContainer = document.querySelector(".button-container");
+  const heroDiv = document.querySelector(".hero"); // Selecting the hero div
 
   predatorButton.addEventListener("click", function () {
     document.querySelectorAll(".pedo").forEach(function (element) {
-      element.style.display = "block";
+      element.style.display = "flex";
     });
     document.querySelectorAll(".server").forEach(function (element) {
       element.style.display = "none";
     });
     hideQuestionAndButtons();
+    adjustHeroHeight(90); // Adjust the hero height to 110vh
   });
 
   serverButton.addEventListener("click", function () {
     document.querySelectorAll(".server").forEach(function (element) {
-      element.style.display = "block";
+      element.style.display = "flex";
     });
     document.querySelectorAll(".pedo").forEach(function (element) {
       element.style.display = "none";
@@ -46,6 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
     buttons.forEach(function (button) {
       button.style.display = "none";
     });
+    buttonContainer.style.display = "none";
+  }
+
+  function adjustHeroHeight(height) {
+    heroDiv.style.height = `${height}vh`;
   }
 });
 
@@ -58,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   predatorButton.addEventListener("click", function () {
     document.querySelectorAll(".pedo").forEach(function (element) {
-      element.style.display = "block";
+      element.style.display = "flex";
     });
     document.querySelectorAll(".server").forEach(function (element) {
       element.style.display = "none";
@@ -68,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   serverButton.addEventListener("click", function () {
     document.querySelectorAll(".server").forEach(function (element) {
-      element.style.display = "block";
+      element.style.display = "flex";
     });
     document.querySelectorAll(".pedo").forEach(function (element) {
       element.style.display = "none";
@@ -122,4 +130,21 @@ xButton.addEventListener("click", function () {
   document.querySelector(".hero h1 span").style.display = "inline-block";
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+  function adjustHeroPosition() {
+    const navbar = document.querySelector(".navbar");
+    const hero = document.querySelector(".hero");
+    
+    if (navbar && hero) {
+      const navbarHeight = navbar.offsetHeight;
+      //hero.style.marginTop = `${navbarHeight + 30}px`; Set hero margin to navbar height + 30px
+    }
+  }
+
+  // Call the function initially
+  adjustHeroPosition();
+
+  // Adjust on window resize to handle responsive changes
+  window.addEventListener("resize", adjustHeroPosition);
+});
 
