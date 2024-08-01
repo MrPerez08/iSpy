@@ -1,6 +1,9 @@
 let fileInput = document.getElementById("file-input");
 let fileList = document.getElementById("files-list");
 let numOfFiles = document.getElementById("num-of-files");
+const heroContent = document.querySelector('.hero-content');
+const baseMarginTop = 130; // Initial margin-top value
+const additionalMarginPerFile = 135; // Additional margin per file
 
 let filesArray = []; // Array to keep track of selected files and their list items
 
@@ -55,4 +58,9 @@ function updateFileList() {
   });
 
   numOfFiles.textContent = `${filesArray.length} Files Selected`;
+
+  // Adjust margin-top based on the number of files
+  const newMarginTop = baseMarginTop + additionalMarginPerFile * filesArray.length;
+  console.log(`Updating margin-top: ${newMarginTop}px for ${filesArray.length} files.`); // Debug log
+  heroContent.style.marginTop = `${newMarginTop}px`;
 }

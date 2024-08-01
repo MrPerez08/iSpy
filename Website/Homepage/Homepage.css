@@ -4,7 +4,6 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: #525252;
-  overflow-y: auto; /* Add this */
 }
 
 @keyframes fadeInUp {
@@ -413,7 +412,7 @@ form {
   display: flex;
   gap: 20px;
   justify-content: center; /* Center the buttons horizontally */
-  margin-top: 60px; /* Increase the top margin for more spacing */
+  margin-top: 30px; /* Increase the top margin for more spacing */
 }
 
 .centered-section {
@@ -708,5 +707,5 @@ ul#files-list {
   flex-direction: column;
   float: right;
   margin-top: -20px;
- 
+  margin-bottom: 20px;
 }
