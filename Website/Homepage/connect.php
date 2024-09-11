@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = getenv("CodeMaster$01"); 
+$password = getenv(""); 
 $dbname = "userinput";
 
 // Create connection
