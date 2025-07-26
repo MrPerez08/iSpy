@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # iSpy Conversation Analyzer Requirements
 # Core web framework
 Flask==3.0.0
@@ -44,4 +45,52 @@ requests==2.31.0
 #    - macOS/Linux: source ispy_env/bin/activate
 # 3. Install requirements: pip install -r requirements.txt
 # 4. Make sure Ollama is installed and running
+=======
+# iSpy Conversation Analyzer Requirements
+# Core web framework
+Flask==3.0.0
+Werkzeug==3.0.1
+
+# HTTP requests for Ollama API
+requests==2.31.0
+
+# JSON handling (included in Python standard library, but explicit for clarity)
+# json - built-in
+
+# Date/time handling (built-in)
+# datetime - built-in
+
+# UUID generation (built-in)
+# uuid - built-in
+
+# Optional: Production server (uncomment if needed)
+# gunicorn==21.2.0
+# waitress==2.1.2
+
+# Optional: Additional security headers (uncomment if needed)
+# flask-talisman==1.1.0
+
+# Optional: Environment variable management (uncomment if needed)
+# python-dotenv==1.0.0
+
+# Optional: Logging enhancements (uncomment if needed)
+# python-json-logger==2.0.7
+
+# Development dependencies (uncomment for development)
+# pytest==7.4.3
+# pytest-flask==1.3.0
+# black==23.11.0
+# flake8==6.1.0
+
+# Note: This is a minimal requirements file for production use.
+# For development, uncomment the packages above as needed.
+
+# Installation instructions:
+# 1. Create a virtual environment: python -m venv ispy_env
+# 2. Activate it: 
+#    - Windows: ispy_env\Scripts\activate
+#    - macOS/Linux: source ispy_env/bin/activate
+# 3. Install requirements: pip install -r requirements.txt
+# 4. Make sure Ollama is installed and running
+>>>>>>> 5b8b1b13de22a2879096e4fd8581723f88013350
 # 5. Run the application: python run_ispy.py

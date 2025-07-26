@@ -1,0 +1,11 @@
+{
+    "name": "iSpy Online Pedophile Detector",
+    "version": "1.0.0",
+    "description": "Uses Gemini to scan discord messages and detect potential online predators. ",
+    "manifest_version": 3,
+    "author": "Aidan Perez, Neal Joshi, Vidhu Verma",
+    "action":{
+        "default_popup": "Homepage.html",
+        "default_title": "iSpy"
+    }
+}
